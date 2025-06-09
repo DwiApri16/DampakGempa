@@ -1,12 +1,4 @@
 
-
-/* Dark Mode Switch Modern */
-
-
-
-/* Dark Mode */
-
-
 /* Color Palette Variables */
 :root {
     --color-black: #0A0908;
@@ -41,10 +33,15 @@ header {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.title-container h1 {
-    margin: 0;
-    font-size: 1.8em;
-    color: var(--color-white-smoke);
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-gempa {
+    height: 40px;
+    width: auto;
 }
 
 .navbar-container {
@@ -501,19 +498,32 @@ footer a:hover {
         background-color: transparent;
         padding: 1rem 0;
     }
-    .navbar-container {
-        flex-wrap: wrap;
-        justify-content: center;
+
+    
+    .nav-links {
+        display: none;
     }
+    .navbar-container {
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .dark-mode-toggle-navbar {
+      margin-left: auto;
+      order: 1;
+    }
+    .hamburger {
+        display: flex;
+        order: 2;
+  }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
 
-    .dark-mode-toggle-navbar {
-        margin-left: 0;
-        margin-top: 10px;
-        justify-content: center;
-        width: 100%;
+  
+    .title-container h1 {
+        font-size: small;
     }
     body {
         font-size: 16px;
@@ -523,11 +533,3 @@ footer a:hover {
     }
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    .hamburger {
-        display: flex;
-    }
-}
