@@ -1,4 +1,4 @@
-// Slide otomatis tiap 7 detik
+
 
 
     function showSlide(n) {
