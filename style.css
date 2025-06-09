@@ -1,0 +1,533 @@
+
+
+/* Dark Mode Switch Modern */
+
+
+
+/* Dark Mode */
+
+
+/* Color Palette Variables */
+:root {
+    --color-black: #0A0908;
+    --color-gunmetal: #22333B;
+    --color-white-smoke: #F2F4F3;
+    --color-beaver: #A9927D;
+    --color-walnut-brown: #5E503F;
+}
+
+/* Reset dan Dasar */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--color-white-smoke);
+    color: var(--color-black);
+    scroll-behavior: smooth;
+}
+
+/* Header dan Navbar */
+header {
+    background-color: var(--color-gunmetal);
+    color: var(--color-white-smoke);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.title-container h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--color-white-smoke);
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-container a.nav-link {
+    color: var(--color-white-smoke);
+    text-decoration: none;
+    padding: 8px 15px;
+    font-size: 1em;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-container a.nav-link:hover,
+.navbar-container a.nav-link:focus,
+.navbar-container a.nav-link.active {
+    background-color: var(--color-white-smoke);
+    color: var(--color-gunmetal);
+}
+
+.dark-mode-toggle-navbar {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 30px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+.slider:before {
+    position: absolute;
+    content: "\2600";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #fff;
+    color: #f39c12;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 50%;
+    transition: .4s;
+    font-size: 16px;
+}
+
+input:checked + .slider {
+    background-color: var(--color-walnut-brown);
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+    content: "\1F319";
+    color: #fff;
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 15px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-white-smoke);
+    transition: 0.3s;
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--color-black);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 2rem;
+    gap: 1.5rem;
+    transition: right 0.3s ease;
+    z-index: 2000;
+}
+
+.mobile-nav a {
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.mobile-nav.show {
+    right: 0;
+}
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #eeeeee;
+}
+body.dark-mode header,
+body.dark-mode .author-contact-container,
+body.dark-mode .description-container {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+body.dark-mode .slide-text,
+body.dark-mode .description-container,
+body.dark-mode .description-container h2,
+body.dark-mode .author-description {
+    background-color: #2c2c2c;
+    color: #ffffff;
+}
+
+body.dark-mode .hero-slider-two {
+    background-color: var(--color-walnut-brown);
+    color: #ffffff;
+}
+
+body.dark-mode .slide-controls button,
+body.dark-mode .contact-info a {
+    background-color: #444;
+    color: #eee;
+}
+body.dark-mode .slide-controls button:hover {
+    background-color: #666;
+}
+
+/*Map Style */
+
+.info-banner {
+  padding: 10px;
+  background-color: #fdd835;
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+  z-index: 1000;
+}
+
+/* Legend Box Styling */
+.leaflet-legend-box {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    line-height: 1.6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    color: #333;
+}
+
+.leaflet-legend-box h4 {
+    margin-top: 0;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    color: #222;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.legend-item img {
+    margin-right: 6px;
+}
+
+.legend-circle {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+
+.leaflet-control-container,
+.leaflet-bottom,
+.leaflet-top {
+    z-index: 500 !important;
+}
+
+/* Hero Slider */
+
+.hero-slider-two {
+    background: var(--color-beaver);
+    color: var(--color-white-smoke);
+    padding: 3rem 1.5rem;
+}
+
+.hero-slider-two .slide-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.hero-slider-two .slide {
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hero-slider-two .slide.active {
+    display: block;
+}
+
+.hero-slider-two .hero-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.hero-slider-two .hero-text {
+    flex: 1;
+    padding: 2rem;
+    min-width: 280px;
+}
+
+.hero-slider-two .hero-text h2 {
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.hero-slider-two .hero-text p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.hero-slider-two .hero-image {
+    flex: 1;
+    text-align: center;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 280px;
+}
+
+.hero-slider-two .hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.hero-slider-two .slide-controls {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.hero-slider-two .slide-controls button {
+    background-color: var(--color-walnut-brown);
+    color: var(--color-white-smoke);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.hero-slider-two .slide-controls button:hover {
+    background-color: var(--color-white-smoke);
+    color: var(--color-gunmetal);
+}
+
+
+/* Map Section */
+.map-container {
+    width: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 70vh;
+    background-color: #e0e0e0;
+    position: relative;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(242, 244, 243, 0.95);
+    color: var(--color-black);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+    z-index: 999;
+}
+
+/* Description Section */
+.description-container {
+    padding: 2rem;
+    background-color: var(--color-white-smoke);
+    color: var(--color-black);
+    margin: 0;
+}
+
+.description-container h2 {
+    color: var(--color-gunmetal);
+    border-bottom: 2px solid var(--color-beaver);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#data-status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--color-gunmetal);
+    color: var(--color-white-smoke);
+    border-left: 5px solid var(--color-beaver);
+    border-radius: 4px;
+}
+
+#data-status span {
+    font-weight: bold;
+}
+
+/* Author Section */
+.author-contact-container {
+    background-color: var(--color-gunmetal);
+    color: var(--color-white-smoke);
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.author-content h2,
+.contact-info h3 {
+    color: var(--color-white-smoke);
+    margin-bottom: 1.5rem;
+    font-size: 1.8em;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--color-beaver);
+    margin-bottom: 1rem;
+}
+
+.author-description {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.7;
+    font-size: 1em;
+    color: var(--color-white-smoke);
+}
+
+.contact-info p {
+    margin: 0.8rem 0;
+    font-size: 1em;
+}
+
+.contact-info a {
+    color: var(--color-beaver);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--color-white-smoke);
+    text-decoration: underline;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--color-beaver);
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-black);
+    color: var(--color-white-smoke);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: var(--color-beaver);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Leaflet Control */
+.leaflet-control-layers {
+    border-radius: 5px;
+    background-color: var(--color-white-smoke);
+    color: var(--color-black);
+}
+
+.leaflet-control-layers-toggle {
+    background-image: url(https://unpkg.com/leaflet@1.9.4/dist/images/layers.png);
+    width: 36px;
+    height: 36px;
+}
+
+/* Responsif Mobile */
+@media (max-width: 992px) {
+    .title-container {
+        font-size:10px ;
+        padding: 0;
+    }
+    .hero-slider-two .hero-content {
+        flex-direction: column;
+    }
+
+    .hero-slider-two .hero-image {
+        background-color: transparent;
+        padding: 1rem 0;
+    }
+    .navbar-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .dark-mode-toggle-navbar {
+        margin-left: 0;
+        margin-top: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+    body {
+        font-size: 16px;
+    }
+    #map {
+        height: 60vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>WebGIS Estimasi Dampak Gempa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    </head>
+    <body>
+    <header>
+        <div class="title-container">
+            <h1>Peta Estimasi Dampak Gempa</h1>
+        </div>
+        <nav class="navbar-container">
+        <div class="nav-links">
+            <a href="#map-section" class="nav-link">Peta</a>
+            <a href="#hero-section" class="nav-link">Deskripsi</a>
+            <a href="#author-contact-section" class="nav-link">Tentang Pembuat</a>
+            <a href="https://www.bmkg.go.id" target="_blank" rel="noopener noreferrer" class="nav-link">Sumber: BMKG</a>
+        </div>
+
+        <div class="dark-mode-toggle-navbar">
+            <label class="switch">
+            <input type="checkbox" id="darkModeToggle" />
+            <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#map-section">Peta</a>
+            <a href="#hero-section">Deskripsi</a>
+            <a href="#author-contact-section">Tentang Pembuat</a>
+            <a href="https://www.bmkg.go.id" target="_blank">Sumber: BMKG</a>
+        </div>
+
+    </header>
+
+    <main>
+        <section id="map-section" class="map-container">
+            <div class="info-banner" id="latest-info-banner">
+                <strong>Info Gempa Terbaru:</strong> <span id="banner-content">Memuat data...</span>
+            </div>
+
+            <div id="map">
+                <div id="loading-indicator" class="loading-indicator">
+                    <p>Memuat data peta dan gempa...</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="hero-section" class="hero-slider-two">
+        <div class="slide-container">
+            
+            <!-- Slide 1 -->
+            <div class="slide active" id="slide-1">
+            <div class="hero-content">
+                <div class="hero-text">
+                <h2>Gempa</h2>
+                <p>
+                    Gempa bumi adalah getaran di permukaan bumi akibat pelepasan energi dari dalam, biasanya karena pergeseran lempeng tektonik.
+                    Fenomena ini dapat menimbulkan kerusakan besar, terutama di daerah padat penduduk dan rentan.
+                </p>
+                </div>
+                <div class="hero-image">
+                <img src="https://ugm.ac.id/wp-content/uploads/2020/07/1907201595165772377861818.jpg" />
+                </div>
+            </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide" id="slide-2">
+            <div class="hero-content">
+                <div class="hero-text">
+                <h2>Mitigasi Gempa</h2>
+                <p>
+                    Mitigasi gempa mencakup edukasi masyarakat, pembangunan infrastruktur tahan gempa, simulasi evakuasi, dan sistem peringatan dini. 
+                    Persiapan yang baik dapat menyelamatkan banyak jiwa dan mengurangi kerugian.
+                </p>
+                </div>
+                <div class="hero-image">
+                <img src="https://infopublik.id/assets/upload/headline//infopublik_mei-04.jpg" alt="Ilustrasi Mitigasi" />
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+        <div class="slide-controls">
+            <button onclick="showSlide(1)">1</button>
+            <button onclick="showSlide(2)">2</button>
+        </div>
+        </section>
+
+        <section id="description-section" class="description-container">
+            <h2>Tentang WebGIS Estimasi Dampak Gempa</h2>
+            <p>
+                WebGIS (Sistem Informasi Geografis berbasis Web) ini dirancang untuk memberikan visualisasi perkiraan dampak gempa bumi di wilayah Indonesia secara mendekati *real-time*. WebGIS ini memanfaatkan data publik yang disediakan oleh Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) Indonesia.
+            </p>
+            <p>
+                Fitur utama WebGIS ini meliputi:
+            </p>
+            <ul>
+                <li><strong>Visualisasi Gempa Terbaru:</strong> Menampilkan lokasi episentrum gempa bumi terkini yang terdeteksi oleh BMKG, lengkap dengan informasi magnitudo, kedalaman, waktu kejadian, dan wilayah terdampak.</li>
+                <li><strong>Estimasi Radius Dampak:</strong> Menghitung dan memvisualisasikan perkiraan radius area yang berpotensi merasakan guncangan gempa. Perhitungan ini didasarkan pada formula yang mempertimbangkan magnitudo dan kedalaman gempa. <em>Penting untuk diingat bahwa radius ini adalah estimasi dan dampak nyata dapat bervariasi.</em></li>
+                <li><strong>Daftar Gempa Dirasakan:</strong> Menampilkan daftar 15 gempa bumi terakhir yang dilaporkan dirasakan oleh masyarakat, beserta perkiraan radius dampaknya. Lapisan ini dapat diaktifkan atau dinonaktifkan melalui kontrol lapisan pada peta.</li>
+                <li><strong>Data Otomatis:</strong> Data gempa terbaru diambil secara otomatis dan berkala dari server BMKG.</li>
+            </ul>
+            <p>
+                WebGIS ini bertujuan sebagai sarana informasi dan edukasi publik mengenai aktivitas kegempaan. Untuk informasi resmi dan tindakan mitigasi bencana, selalu rujuk pada sumber resmi BMKG dan otoritas terkait lainnya.
+            </p>
+        <div id="data-status">
+            <p>Status Data Gempa Terbaru: <span id="latest-earthquake-status">Memuat...</span></p>
+            <p>Status Data Gempa Dirasakan: <span id="felt-earthquake-status">Memuat...</span></p>
+            <p>Terakhir diperbarui (Gempa Terbaru): <span id="last-updated-latest">N/A</span></p>
+        </div>
+        </section>
+
+        <section id="author-contact-section" class="author-contact-container">
+        <div class="author-content">
+            <h2>Tentang Pembuat</h2>
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQF7QM7ZO-jQaw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1703306318469?e=1755129600&v=beta&t=tPmeCtSHGGykB7hC8AIZwGCTMLu2ubREfSPgnjmXPxE" alt="Foto Profil Pembuat" class="profile-picture" />
+            <h3>Muhammad Dwi Apriansyah As</h3>
+            <p class="author-description">Mahasiswa UPI jurusan Sains Informasi Geografi. Keahlian: SIG, Kartografi, Inderaja, Survey, dan media kreatif.</p>
+        </div>
+        <div class="contact-info">
+            <h3>Hubungi Saya</h3>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:m.dwi.as@upi.edu">m.dwi.as@upi.edu</a></p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+6281391486511">+62 813 9148 6511</a></p>
+            <p><i class="fab fa-linkedin"></i> <a href="https://id.linkedin.com/in/muhammad-dwi-apriansyah-as-09b4a9297" target="_blank">LinkedIn</a></p>
+            <p><i class="fab fa-github"></i> <a href="https://github.com/DwiApri16/" target="_blank">GitHub</a></p>
+        </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 WebGIS Estimasi Dampak Gempa. Didesain oleh Saya dan Gemini.</p>
+        <p>Data dari <a href="https://data.bmkg.go.id" target="_blank">BMKG</a>. Peta oleh <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="bmkg.js"></script>
+    <script src="script.js"></script>
+    </body>
+</html>
